@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow & Blush | Maquillaje Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- VARIABLES DE COLOR (Paleta Rosa Pastel y Blanco) --- */
+        :root {
+            --rosa-principal: #fff0f5; /* Lavender Blush */
+            --rosa-medio: #ffb6c1;      /* Light Pink */
+            --rosa-oscuro: #ff69b4;     /* Hot Pink para acentos */
+            --blanco: #ffffff;
+            --gris-texto: #555555;
+            --fuente-elegante: 'Playfair Display', serif;
+            --fuente-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--fuente-sans);
+            color: var(--gris-texto);
+            background-color: var(--blanco);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif;
+            color: #4a3b42;
+        }
+
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .titulo-seccion::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--rosa-medio);
+            margin: 10px auto 0;
+        }
+
+        /* --- HEADER Y NAVEGACIÓN --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--rosa-oscuro);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gris-texto);
+            margin-right: 25px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--rosa-oscuro);
+        }
+
+        .iconos-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-icon-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--rosa-oscuro);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+        }
+
+        /* --- HERO SECTION --- */
+        #inicio {
+            height: 100vh;
+            background: linear-gradient(rgba(255, 240, 245, 0.7), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #inicio h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        #inicio p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: var(--rosa-medio);
+            color: white;
+            padding: 12px 35px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--rosa-oscuro);
+            transform: translateY(-2px);
+        }
+
+        /* --- CATÁLOGO DE PRODUCTOS --- */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .producto-card {
+            background: var(--blanco);
+            border: 1px solid var(--rosa-principal);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .producto-card:hover {
+            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.3);
+        }
+
+        .producto-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            background-color: var(--rosa-principal);
+            margin-bottom: 15px;
+        }
+
+        .producto-titulo {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .producto-precio {
+            color: var(--rosa-oscuro);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- SECCIÓN MÉTODOS DE PAGO --- */
+        #pagos {
+            background-color: var(--rosa-principal);
+            text-align: center;
+        }
+
+        .iconos-pago {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 3rem;
+            color: #7a6b72;
+            flex-wrap: wrap;
+        }
+
+        .iconos-pago i {
+            transition: color 0.3s;
+        }
+
+        .iconos-pago i:hover {
+            color: var(--rosa-oscuro);
+        }
+
+        /* --- SECCIÓN CONTACTO --- */
+        .contenedor-contacto {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .info-contacto, .formulario-contacto {
+            flex: 1;
+            min-wIdth: 300px;
+        }
+
+        .formulario-contacto input, .formulario-contacto textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--rosa-medio);
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .formulario-contacto input:focus, .formulario-contacto textarea:focus {
+            border-color: var(--rosa-oscuro);
+        }
+
+        /* --- PANEL DEL CARRITO (Desplegable) --- */
+        .carrito-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 2000;
+            transition: right 0.4s ease;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .carrito-panel.active {
+            right: 0;
+        }
+
+        .carrito-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--rosa-principal);
+            padding-bottom: 10px;
+        }
+
+        .cerrar-carrito {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gris-texto);
+        }
+
+        .carrito-items {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .carrito-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--rosa-principal);
+        }
+
+        .carrito-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- CHATBOT TOTALMENTE FUNCIONAL --- */
+        .chatbot-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--rosa-oscuro);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1500;
+        }
+
+        .chatbot-ventana {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+            z-index: 1500;
+            border: 1px solid var(--rosa-principal);
+            overflow: hidden;
+        }
+
+        .chatbot-ventana.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background-color: var(--rosa-medio);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-mensajes {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #fffafb;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mensaje {
+            padding: 8px 12px;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 0.9rem;
+        }
+
+        .mensaje.bot {
+            background-color: var(--rosa-principal);
+            align-self: flex-start;
+            color: #333;
+        }
+
+        .mensaje.usuario {
+            background-color: var(--rosa-medio);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chatbot-input-area {
+            display: flex;
+            border-top: 1px solid var(--rosa-principal);
+            padding: 10px;
+            background: white;
+        }
+
+        .chatbot-input-area input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            padding: 5px;
+        }
+
+        .chatbot-input-area button {
+            background: none;
+            border: none;
+            color: var(--rosa-oscuro);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #4a3b42;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Animaciones simples */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#inicio" class="logo">GLOW & BLUSH</a>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Catálogo</a>
+            <a href="#pagos">Pagos</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <div class="iconos-nav">
+            <div class="cart-icon-container" onclick="toggleCarrito()">
+                <i class="fa-solid fa-bag-shopping fa-lg"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio">
+        <h1>Resalta tu belleza natural</h1>
+        <p>Descubre nuestra colección premium de maquillaje cruelty-free en tonos pasteles y texturas sedosas diseñadas para brillar.</p>
+        <a href="#productos" class="btn">Comprar Ahora</a>
+    </section>
+
+    <section id="productos" class="section">
+        <h2 class="titulo-seccion">Nuestros Favoritos</h2>
+        <div class="grid-productos">
+            
+            <div class="producto-card">
+                <img src="https://belcorpcolombia.vtexassets.com/arquivos/ids/1145164/200117108-DEEP-RED_fondoblanco.png?v=639168695237800000" alt="Labial Matte" class="producto-img">
+                <h3 class="producto-titulo">Labial Velvet Rose xxx</h3>
+                <p style="font-size:0.85rem; color:#888; margin-bottom:10px;">Acabado matte de larga duración</p>
+                <div class="producto-precio">$19.990</div>
+                <button class="btn" onclick="agregarAlCarrito('Labial Velvet Rose', 18.99)">Añadir al Carrito</button>
+            </div>
+
+            <div class="producto-card">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=400&q=80" alt="Paleta de Sombras" class="producto-img">
+                <h3 class="producto-titulo">Paleta Pastel Dreams</h3>
+                <p style="font-size:0.85rem; color:#888; margin-bottom:10px;">12 tonos ultra pigmentados</p>
+                <div class="producto-precio">$39.990</div>
+                <button class="btn" onclick="agregarAlCarrito('Paleta Pastel Dreams', 34.50)">Añadir al Carrito</button>
+            </div>
+
+            <div class="producto-card">
+                <img src="https://raymarcosmetics.com/cdn/shop/files/Rubor_liquido_tono_1_e8438d89-babc-407f-bf53-998aa9da9861.jpg?v=1727290162&width=720" alt="Rubor Líquido" class="producto-img">
+                <h3 class="producto-titulo">Blush Líquido Soft Pink</h3>
+                <p style="font-size:0.85rem; color:#888; margin-bottom:10px;">Efecto natural y jugoso</p>
+                <div class="producto-precio">$9.990</div>
+                <button class="btn" onclick="agregarAlCarrito('Blush Líquido Soft Pink', 15.00)">Añadir al Carrito</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="pagos" class="section" style="max-width: 100%;">
+        <h2 class="titulo-seccion">Métodos de Pago Seguros</h2>
+        <p style="margin-bottom: 30px; text-align: center;">Aceptamos las principales plataformas para garantizar transacciones 100% confiables.</p>
+        <div class="iconos-pago">
+            <i class="fa-brands fa-cc-visa" title="Visa"></i>
+            <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+            <i class="fa-brands fa-cc-paypal" title="PayPal"></i>
+            <i class="fa-brands fa-cc-apple-pay" title="Apple Pay"></i>
+        </div>
+    </section>
+
+    <section id="contacto" class="section">
+        <h2 class="titulo-seccion">Contáctanos</h2>
+        <div class="contenedor-contacto">
+            <div class="info-contacto">
+                <h3>¿Tienes dudas?</h3>
+                <p style="margin: 15px 0;">Estamos aquí para asesorarte en tu rutina de belleza ideal. Escríbenos o búscanos en redes sociales.</p>
+                <p><i class="fa-solid fa-envelope" style="color:var(--rosa-oscuro);"></i> soporte@glowandblush.com</p>
+                <p style="margin-top: 10px;"><i class="fa-solid fa-location-dot" style="color:var(--rosa-oscuro);"></i> Boutique Central, Ciudad de Belleza</p>
+            </div>
+            <div class="formulario-contacto">
+                <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito! Nos comunicaremos contigo pronto.'); this.reset();">
+                    <input type="text" placeholder="Tu Nombre" required>
+                    <input type="email" placeholder="Tu Correo Electrónico" required>
+                    <textarea rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="carrito-panel" id="carrito-panel">
+        <div class="carrito-header">
+            <h3>Tu Carrito</h3>
+            <i class="fa-solid fa-xmark cerrar-carrito" onclick="toggleCarrito()"></i>
+        </div>
+        <div class="carrito-items" id="carrito-items">
+            <p style="color:#aaa; text-align:center; margin-top:20px;">Tu carrito está vacío</p>
+        </div>
+        <div class="carrito-total">
+            <span>Total:</span>
+            <span id="total-precio">$0.00</span>
+        </div>
+        <button class="btn" style="width:100%;" onclick="procesarPago()">Proceder al Pago</button>
+    </div>
+
+    <div class="chatbot-bubble" onclick="toggleChatbot()">
+        <i class="fa-solid fa-comments"></i>
+    </div>
+
+    <div class="chatbot-ventana" id="chatbot-ventana">
+        <div class="chatbot-header">
+            <span>✨ Asistente de Glow & Blush</span>
+            <i class="fa-solid fa-xmark" style="cursor:pointer;" onclick="toggleChatbot()"></i>
+        </div>
+        <div class="chatbot-mensajes" id="chatbot-mensajes">
+            <div class="mensaje bot">¡Hola! 🌸 Soy tu asesora de belleza virtual. ¿Te gustaría saber sobre el envío, métodos de pago o recomendaciones de labiales?</div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu duda aquí..." onkeypress="evaluarEnterChat(event)">
+            <button onclick="enviarMensajeChat()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Glow & Blush. Todos los derechos reservados. Creado con amor rosa.</p>
+    </footer>
+
+    <script>
+        // --- LÓGICA DEL CARRITO ---
+        let carrito = [];
+        
+        function toggleCarrito() {
+            document.getElementById('carrito-panel').classList.toggle('active');
+        }
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            actualizarInterfazCarrito();
+            
+            // Efecto visual rápido de confirmación
+            alert(`¡Se añadió "${nombre}" al carrito!`);
+        }
+
+        function actualizarInterfazCarrito() {
+            const contenedorItems = document.getElementById('carrito-items');
+            const contadorCart = document.getElementById('cart-count');
+            const totalPrecioElemento = document.getElementById('total-precio');
+            
+            contadorCart.innerText = carrito.length;
+
+            if (carrito.length === 0) {
+                contenedorItems.innerHTML = '<p style="color:#aaa; text-align:center; margin-top:20px;">Tu carrito está vacío</p>';
+                totalPrecioElemento.innerText = "$0.00";
+                return;
+            }
+
+            contenedorItems.innerHTML = '';
+            let total = 0;
+
+            carrito.forEach((item, index) => {
+                total += item.price || item.precio;
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('carrito-item');
+                itemDiv.innerHTML = `
+                    <div>
+                        <p style="font-weight:600;">${item.nombre}</p>
+                        <p style="color:var(--rosa-oscuro); font-size:0.9rem;">$${item.precio.toFixed(2)}</p>
+                    </div>
+                    <i class="fa-solid fa-trash" style="color:#cc9999; cursor:pointer;" onclick="eliminarDelCarrito(${index})"></i>
+                `;
+                contenedorItems.appendChild(itemDiv);
+            });
+
+            totalPrecioElemento.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarInterfazCarrito();
+        }
+
+        function procesarPago() {
+            if(carrito.length === 0) {
+                alert("Tu carrito está vacío.");
+                return;
+            }
+            alert("Redirigiendo a nuestra pasarela de pago segura con encriptación SSL...");
+            carrito = [];
+            actualizarInterfazCarrito();
+            toggleCarrito();
+        }
+
+        // --- LÓGICA DEL CHATBOT ---
+        function toggleChatbot() {
+            document.getElementById('chatbot-ventana').classList.toggle('active');
+        }
+
+        function evaluarEnterChat(e) {
+            if (e.key === 'Enter') {
+                enviarMensajeChat();
+            }
+        }
+
+        function enviarMensajeChat() {
+            const input = document.getElementById('chatbot-input');
+            const texto = input.value.trim();
+            if (!texto) return;
+
+            // Añadir mensaje del usuario
+            añadirMensajeHtml(texto, 'usuario');
+            input.value = '';
+
+            // Respuesta automatizada creíble inteligente
+            setTimeout(() => {
+                let respuestaBot = "Disculpa, no entendí bien. Puedes preguntar sobre 'envíos', 'pagos' o 'labiales'. 💖";
+                const t = texto.toLowerCase();
+
+                if (t.includes('envio') || t.includes('enviar') || t.includes('domicilio')) {
+                    respuestaBot = "¡Hacemos envíos nacionales gratis por compras mayores a $40! El tiempo estimado es de 2 a 4 días hábiles. 📦";
+                } else if (t.includes('pago') || t.includes('tarjeta') || t.includes('paypal')) {
+                    respuestaBot = "Aceptamos Visa, Mastercard, Apple Pay y PayPal. Todo procesado de forma 100% segura. 💳";
+                } else if (t.includes('labial') || t.includes('makeup') || t.includes('maquillaje') || t.includes('producto')) {
+                    respuestaBot = "¡Nuestro producto estrella es el 'Labial Velvet Rose'! Es de acabado matte pero no reseca los labios. Lo puedes añadir directo al carrito desde el catálogo. 💄";
+                } else if (t.includes('hola') || t.includes('buenas')) {
+                    respuestaBot = "¡Hola hermosa! Un gusto saludarte. ¿Cómo te puedo asistir con tu orden hoy? ✨";
+                }
+
+                añadirMensajeHtml(respuestaBot, 'bot');
+            }, 800);
+        }
+
+        function añadirMensajeHtml(texto, emisor) {
+            const contenedorMensajes = document.getElementById('chatbot-mensajes');
+            const div = document.createElement('div');
+            div.classList.add('mensaje', emisor);
+            div.innerText = texto;
+            contenedorMensajes.appendChild(div);
+            contenedorMensajes.scrollTop = contenedorMensajes.scrollHeight; // Auto scroll al último mensaje
+        }
+    </script>
+</body>
+</html>
